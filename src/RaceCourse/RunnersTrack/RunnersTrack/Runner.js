@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Runner = (props) => (
+const Runner = ({name, value}) => (
   <div style={{ background: "#eee", borderRadius: '5px', padding: '0 10px' }}>
-    <p><strong>{props.user}</strong> says:</p>
-    <p>{props.message}</p>
+    <p><strong>{name}</strong>: </p>
+    <p>{value}</p>
   </div>
 );
 
