@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 import RunnersTrack from "./RunnersTrack/RunnersTrack";
+import grade from "../assets/grade.jpg"
+import './RaceCourse.css';
 
 const RaceCourse = () => {
   // const [ conn, setConn ] = useState();
@@ -11,7 +13,7 @@ const RaceCourse = () => {
 
   useEffect(() => {
     const connection = new HubConnectionBuilder()
-      // .withUrl('https://signalrhorses.azurewebsites.net//chat')
+      // .withUrl('https://signalrhorses.azurewebsites.net/chat')
       .withUrl('https://localhost:44318/chat')
       .build();
 
@@ -25,27 +27,13 @@ const RaceCourse = () => {
         // setConn(connection);
       })
       .catch(e => {
-        debugger;
         console.log('Connection failed: ', e)
       });
   }, []);
 
-  // const sendMessage = async (user, message) => {
-  //   const chatMessage = {
-  //     name: user,
-  //     message: message
-  //   };
-  //
-  //   try {
-  //     conn.invoke('send', chatMessage.name, chatMessage.message);
-  //   }
-  //   catch(e) {
-  //     console.log('Sending message failed.', e);
-  //   }
-  // }
-
   return (
     <div>
+      <div className="grade" style={{ backgroundImage: `url(${grade})` }} />
       <RunnersTrack runners={runnersList}/>
     </div>
   );

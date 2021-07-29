@@ -3,7 +3,7 @@ import RaceCourse from './RaceCourse/RaceCourse';
 
 function App() {
   return (
-    <div style={{ margin: '0 30%' }}>
+    <div>
       <RaceCourse />
     </div>
   );
