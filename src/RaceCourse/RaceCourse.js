@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 import RunnersTrack from "./RunnersTrack/RunnersTrack";
 import grade from "../assets/grade.jpg"
+import footer from "../assets/footer.jpg"
 import './RaceCourse.css';
 
 const RaceCourse = () => {
@@ -32,9 +33,12 @@ const RaceCourse = () => {
   }, []);
 
   return (
-    <div>
+    <div className="root">
       <div className="grade" style={{ backgroundImage: `url(${grade})` }} />
-      <RunnersTrack runners={runnersList}/>
+      <div className="tracksRoot">
+        <RunnersTrack runners={runnersList}/>
+      </div>
+      <div className="footer" style={{ backgroundImage: `url(${footer})` }} />
     </div>
   );
 };
