@@ -8,14 +8,11 @@ const RunnersTrack = ({runners}) => {
   return(
     <div>
       {Object.keys(runners).map(key => <Runner name={key} value={runners[key]}/>)}
+      <Horse color completed={0} />
       <Horse completed={0} />
+      <Horse color completed={50} />
       <Horse completed={0} />
-      <Horse completed={0} />
-      <Horse completed={0} />
-      <Horse completed={0} />
-      <Horse completed={0} />
-      <Horse completed={10} />
-      <Horse completed={100} />
+      <Horse color completed={0} />
     </div>
   )
 };

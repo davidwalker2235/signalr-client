@@ -2,10 +2,11 @@ import React from "react";
 import horse1 from "../../../assets/horse1.png"
 
 const Horse = (props) => {
-  const { completed } = props;
+  const { completed, color } = props;
   const containerStyles = {
     height: 20,
     paddingLeft: 80,
+    backgroundColor: color ? '#0CC505' : '#62F216'
   }
 
   const fillerStyles = {
