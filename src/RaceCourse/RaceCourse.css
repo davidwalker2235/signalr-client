@@ -5,6 +5,7 @@
     min-height: 10vh;
     max-height: 80vh;
     overflow: auto;
+    margin-bottom: 20px;
 }
 .grade {
     height: 150px;
