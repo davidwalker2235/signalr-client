@@ -7,7 +7,7 @@ import './RaceCourse.css';
 
 const RaceCourse = () => {
   // const [ conn, setConn ] = useState();
-  const [ runnersList, setRunnersList ] = useState([]);
+  const [ runnersList, setRunnersList ] = useState({});
   const latestRunnersList = useRef(null);
 
   latestRunnersList.current = runnersList;
@@ -22,8 +22,16 @@ const RaceCourse = () => {
       .then(() => {
         console.log('Connected!');
 
-        connection.on('broadcastUserList', (runnersList) => {
-          setRunnersList(runnersList);
+        connection.on('broadcastUserList', (list) => {
+          latestRunnersList.current = list;
+          setRunnersList(list);
+        });
+
+        connection.on('broadcastUser', (runner) => {
+          Object.keys(runner).forEach(key => {
+            latestRunnersList.current = {...latestRunnersList.current, [key]: runner[key]}
+            setRunnersList(latestRunnersList.current);
+          })
         });
         // setConn(connection);
       })

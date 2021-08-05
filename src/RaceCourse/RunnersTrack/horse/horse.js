@@ -2,11 +2,11 @@ import React from "react";
 import horse1 from "../../../assets/horse1.png"
 
 const Horse = (props) => {
-  const { completed, color } = props;
+  const { completed, grass, name } = props;
   const containerStyles = {
     height: 20,
     paddingLeft: 80,
-    backgroundColor: color ? '#0CC505' : '#62F216'
+    backgroundColor: grass ? '#0CC505' : '#62F216'
   }
 
   const fillerStyles = {
@@ -18,7 +18,7 @@ const Horse = (props) => {
 
   const labelStyles = {
     width: 80,
-    marginTop: -18,
+    marginTop: -38,
     position: 'absolute',
     marginLeft: -80,
   }
@@ -28,6 +28,7 @@ const Horse = (props) => {
       <div style={fillerStyles}>
         <img alt="horse" style={labelStyles} src={horse1} />
       </div>
+      <p>{name}</p>
     </div>
   );
 };
