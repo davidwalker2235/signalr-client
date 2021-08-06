@@ -4,9 +4,10 @@ import RunnersTrack from "./RunnersTrack/RunnersTrack";
 import grade from "../assets/grade.jpg"
 import footer from "../assets/footer.jpg"
 import './RaceCourse.css';
+import GameOver from "./GameOver/GameOver";
 
 const RaceCourse = () => {
-  // const [ conn, setConn ] = useState();
+  const MAX_VALUE_ALLOWED = 142;
   const [ runnersList, setRunnersList ] = useState({});
   const [ winner, setWinner ] = useState('');
   const [ maxScore, setMaxScore ] = useState(0);
@@ -53,15 +54,17 @@ const RaceCourse = () => {
 
   return (
     <div className="root">
-      <div className="grade" style={{ backgroundImage: `url(${grade})` }} />
-      <div className="score">{`winner: ${winner} with: ${maxScore}`}</div>
-      {maxScore < 5 ?
-        <div className="tracksRoot">
-          <RunnersTrack runners={runnersList}/>
+      {maxScore < MAX_VALUE_ALLOWED ?
+        <div>
+          <div className="grade" style={{backgroundImage: `url(${grade})`}}/>
+          <div className="score">{`Ahead: ${winner}`}</div>
+          <div className="tracksRoot">
+            <RunnersTrack runners={runnersList}/>
+          </div>
+          <div className="footer" style={{backgroundImage: `url(${footer})`}}/>
         </div> :
-        <div>{`WINNER: ${winner}`}</div>
+        <GameOver name={winner}/>
       }
-      <div className="footer" style={{ backgroundImage: `url(${footer})` }} />
     </div>
   );
 };
