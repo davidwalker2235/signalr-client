@@ -8,6 +8,8 @@ import './RaceCourse.css';
 const RaceCourse = () => {
   // const [ conn, setConn ] = useState();
   const [ runnersList, setRunnersList ] = useState({});
+  const [ winner, setWinner ] = useState('');
+  const [ maxScore, setMaxScore ] = useState(0);
   const latestRunnersList = useRef(null);
 
   latestRunnersList.current = runnersList;
@@ -31,6 +33,8 @@ const RaceCourse = () => {
           Object.keys(runner).forEach(key => {
             latestRunnersList.current = {...latestRunnersList.current, [key]: runner[key]}
             setRunnersList(latestRunnersList.current);
+            getWinner(latestRunnersList.current);
+            setMaxScore(runner[key]);
           })
         });
         // setConn(connection);
@@ -40,12 +44,23 @@ const RaceCourse = () => {
       });
   }, []);
 
+  const getWinner = (runnersList = {}) => {
+    const sorted = Object.entries(runnersList)
+      .sort(([,a],[,b]) => a-b)
+      .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+    setWinner(Object.keys(sorted).pop())
+  }
+
   return (
     <div className="root">
       <div className="grade" style={{ backgroundImage: `url(${grade})` }} />
-      <div className="tracksRoot">
-        <RunnersTrack runners={runnersList}/>
-      </div>
+      <div className="score">{`winner: ${winner} with: ${maxScore}`}</div>
+      {maxScore < 5 ?
+        <div className="tracksRoot">
+          <RunnersTrack runners={runnersList}/>
+        </div> :
+        <div>{`WINNER: ${winner}`}</div>
+      }
       <div className="footer" style={{ backgroundImage: `url(${footer})` }} />
     </div>
   );
