@@ -7,10 +7,12 @@ import './RaceCourse.css';
 import GameOver from "./GameOver/GameOver";
 
 const RaceCourse = () => {
-  const MAX_VALUE_ALLOWED = 142;
+  // const MAX_VALUE_ALLOWED = 142;
+  const MAX_VALUE_ALLOWED = 5;
   const [ runnersList, setRunnersList ] = useState({});
   const [ winner, setWinner ] = useState('');
   const [ maxScore, setMaxScore ] = useState(0);
+  const [ conn, setConn ] = useState();
   const latestRunnersList = useRef(null);
 
   latestRunnersList.current = runnersList;
@@ -38,7 +40,7 @@ const RaceCourse = () => {
             setMaxScore(runner[key]);
           })
         });
-        // setConn(connection);
+        setConn(connection);
       })
       .catch(e => {
         console.log('Connection failed: ', e)
@@ -52,6 +54,15 @@ const RaceCourse = () => {
     setWinner(Object.keys(sorted).pop())
   }
 
+  const sendWinner = async (winner) => {
+    try {
+      conn.invoke('sendWinner', winner);
+    }
+    catch(e) {
+      console.log('Sending winner name failed.', e);
+    }
+  }
+
   return (
     <div className="root">
       {maxScore < MAX_VALUE_ALLOWED ?
@@ -63,7 +74,7 @@ const RaceCourse = () => {
           </div>
           <div className="footer" style={{backgroundImage: `url(${footer})`}}/>
         </div> :
-        <GameOver name={winner}/>
+        <GameOver name={winner} sendWinner={sendWinner}/>
       }
     </div>
   );
