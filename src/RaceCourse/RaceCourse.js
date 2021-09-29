@@ -19,8 +19,8 @@ const RaceCourse = () => {
 
   useEffect(() => {
     const connection = new HubConnectionBuilder()
-      .withUrl('https://signalrhorses.azurewebsites.net/chat')
-      // .withUrl('https://localhost:44318/chat')
+      // .withUrl('https://signalrhorses.azurewebsites.net/chat')
+      .withUrl('https://localhost:44318/chat')
       .build();
 
     connection.start()
@@ -68,7 +68,7 @@ const RaceCourse = () => {
       {maxScore < MAX_VALUE_ALLOWED ?
         <div>
           <div className="grade" style={{backgroundImage: `url(${grade})`}}/>
-          <div className="score">{`Ahead: ${winner}`}</div>
+          {/*<Ranking className="score" />*/}
           <div className="tracksRoot">
             <RunnersTrack runners={runnersList}/>
           </div>

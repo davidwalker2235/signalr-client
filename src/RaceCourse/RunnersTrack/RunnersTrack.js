@@ -5,9 +5,9 @@ import Horse from "./horse/horse";
 const RunnersTrack = ({runners}) => {
 
   return(
-    <div>
+    <div style={{padding: '0 35px 0 75px'}}>
       {Object.keys(runners).map((key, index) =>
-        <Horse name={key} grass={index%2 === 0} completed={runners[key]} />
+        <Horse key={`horse${index}-${key}`} name={key} index={index} completed={runners[key]}/>
       )}
     </div>
   )
