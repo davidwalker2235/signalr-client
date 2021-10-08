@@ -17,7 +17,7 @@ const Horse = ({ name, index, completed }) => {
 
   useEffect(() => {
     progress.current = completed
-    completed === 1 && spriteSheetInstance.current.play();
+    completed === 1 && spriteSheetInstance?.current?.play();
   }, [completed])
 
   const fillerStyles = {

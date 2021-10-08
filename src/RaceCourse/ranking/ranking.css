@@ -1,0 +1,29 @@
+.rankingRoot {
+    position: absolute;
+    top: 21px;
+    right: 0;
+}
+.rankingImage {
+    width: 147px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.first {
+    position: relative;
+    top: 31px;
+    right: 56px;
+    font-weight: bold;
+}
+.second {
+    position: relative;
+    top: 48px;
+    right: 56px;
+    font-weight: bold;
+}
+.third {
+    position: relative;
+    top: 66px;
+    right: 56px;
+    font-weight: bold;
+}

@@ -1,14 +1,15 @@
 import React from 'react';
-import ranking from "../../assets/ranking.png"
+import rankingPoster from "../../assets/ranking.png"
 import './ranking.css';
 
-const Ranking = () => {
+const Ranking = ({ranking}) => {
 
   return (
-    <div className="root">
-      <div>
-        <div className="grade" style={{backgroundImage: `url(${ranking})`}}/>
-      </div>
+    <div className="rankingRoot">
+      <img alt="ranking-poster" className="rankingImage" src={rankingPoster}/>
+      <div className="first">{ranking.first}</div>
+      <div className="second">{ranking.second}</div>
+      <div className="third">{ranking.third}</div>
     </div>
   );
 };

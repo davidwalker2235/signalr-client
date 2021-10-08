@@ -5,12 +5,17 @@ import grade from "../assets/grade.jpg"
 import footer from "../assets/footer.jpg"
 import './RaceCourse.css';
 import GameOver from "./GameOver/GameOver";
+import Ranking from "./ranking/ranking";
 
 const RaceCourse = () => {
   const MAX_VALUE_ALLOWED = 142;
   // const MAX_VALUE_ALLOWED = 5;
   const [ runnersList, setRunnersList ] = useState({});
-  const [ winner, setWinner ] = useState('');
+  const [ winner, setWinner ] = useState({
+    first: '',
+    second: '',
+    third: ''
+  });
   const [ maxScore, setMaxScore ] = useState(0);
   const [ conn, setConn ] = useState();
   const latestRunnersList = useRef(null);
@@ -51,7 +56,12 @@ const RaceCourse = () => {
     const sorted = Object.entries(runnersList)
       .sort(([,a],[,b]) => a-b)
       .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
-    setWinner(Object.keys(sorted).pop())
+    const runnersKeys = Object.keys(sorted);
+    setWinner({
+      first: runnersKeys.pop() || '',
+      second: runnersKeys.pop() || '',
+      third: runnersKeys.pop() || ''
+    })
   }
 
   const sendWinner = async (winner) => {
@@ -68,13 +78,13 @@ const RaceCourse = () => {
       {maxScore < MAX_VALUE_ALLOWED ?
         <div>
           <div className="grade" style={{backgroundImage: `url(${grade})`}}/>
-          {/*<Ranking className="score" />*/}
+          <Ranking ranking={winner}/>
           <div className="tracksRoot">
             <RunnersTrack runners={runnersList}/>
           </div>
           <div className="footer" style={{backgroundImage: `url(${footer})`}}/>
         </div> :
-        <GameOver name={winner} sendWinner={sendWinner}/>
+        <GameOver name={winner.first} sendWinner={sendWinner}/>
       }
     </div>
   );
