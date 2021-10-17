@@ -8,8 +8,8 @@ import GameOver from "./GameOver/GameOver";
 import Ranking from "./ranking/ranking";
 
 const RaceCourse = () => {
-  const MAX_VALUE_ALLOWED = 142;
-  // const MAX_VALUE_ALLOWED = 5;
+  // const MAX_VALUE_ALLOWED = 142;
+  const MAX_VALUE_ALLOWED = 5;
   const [ runnersList, setRunnersList ] = useState({});
   const [ winner, setWinner ] = useState({
     first: '',

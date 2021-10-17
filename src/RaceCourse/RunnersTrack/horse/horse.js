@@ -39,7 +39,7 @@ const Horse = ({ name, index, completed }) => {
     <div key={`horse${index}-${name}`}>
       <div style={fillerStyles}>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-          <div style={{magin: '-15px 10px 0 0'}}>sdfsdf</div>
+          <div style={{magin: '-15px 10px 0 0'}}>{name}</div>
           <SpriteSheet
             className={`horse`}
             style={labelStyles}
